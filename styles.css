@@ -268,7 +268,7 @@ button[type="submit"]:hover{ background:#cca15a; }
 .contact-form h2,
 .contact-info h2 {
   font-size: 1.8rem;
-  color: #5a2a27;
+  color: #ab874e;;
   margin-bottom: 1.5rem;
 }
 .contact-form form {
@@ -286,7 +286,7 @@ button[type="submit"]:hover{ background:#cca15a; }
   font-size: 1rem;
 }
 .contact-form button {
-  background: #5a2a27;
+  background: #ab874e;
   color: #fff;
   border: none;
   padding: 0.9rem 1.5rem;
