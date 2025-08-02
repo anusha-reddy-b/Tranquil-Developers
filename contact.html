@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us - Tranquil Developers </title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<link rel="icon" href="images/tranquil-logo.png" type="image/x-icon" />
+  <!-- Navbar -->
+  <nav class="navbar" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;">
+    <div class="logo">
+        <a href="index.html"><img src="images/tranquil-name.png" alt="Tranquil Developers Logo" /></a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <!-- <li><a href="about.html" class="active">About</a></li> -->
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+  <!-- Header -->
+  <header class="subpage-hero">
+    <h1>The First Step to Tranquil Living Starts Here</h1>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="contact-container">
+      
+      <!-- Contact Form -->
+      <div class="contact-form fade-in">
+        <h2>Send Us a Message</h2>
+        <form id="contactForm" style="font-size: 1.2rem; line-height: 3;">
+          <input type="text" id="name" name="name" placeholder="Your Name" required />
+          <input type="email" id="email" name="email" placeholder="Your Email" required />
+          <input type="text" id="subject" name="subject" placeholder="Subject" />
+          <textarea id="message" name="message" rows="6" placeholder="Your Message" required></textarea>
+          <button type="submit" style="font-size: 1rem;">Submit</button>
+        </form>
+        <div id="formStatus"></div>
+      </div>
+
+      <script>
+        const scriptURL = "www.tranquildevelopers.com"; 
+
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+          e.preventDefault();
+          const form = new FormData(this);
+          const status = document.getElementById("formStatus");
+
+          fetch(scriptURL, { method: "POST", body: form })
+            .then(response => {
+              status.textContent = "Thank you! Your message has been sent.";
+              this.reset();
+            })
+            .catch(error => {
+              status.textContent = "Sorry, there was an error. Please try again.";
+            });
+        });
+      </script>
+
+
+      <!-- Contact Info -->
+      <div class="contact-info fade-in">
+        <h2>Get in Touch</h2><br />
+        <p style="line-height: 3;"><strong>Phone:  </strong> +91 821 297 1000</p>       +91 9483022555<br /><br />
+
+        <p style="line-height: 3;"><strong>Email:  </strong> contact@tranquildevelopers.com</p><br />
+        <p style="line-height: 1.5;"><strong>Address:  </strong>
+          #1, 100 Feet Road<br />
+                  RT Nagar,<br />
+                  Mysore, 570033
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
