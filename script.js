@@ -12,17 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
   faders.forEach(el => io.observe(el));
 
 document.querySelectorAll('.nav-links a').forEach(a => {
-  // Get original href
   const originalHref = a.getAttribute('href');
 
-  // Only modify if it's a local path (not an anchor link or external URL)
+  // Handle removal of index.html in local links
   if (
     originalHref &&
     !originalHref.startsWith('#') &&
     !originalHref.startsWith('http') &&
     originalHref.includes('index.html')
   ) {
-    // Remove index.html from path
     const cleanHref = originalHref.replace(/index\.html(\b|\/)?/g, '/');
     a.setAttribute('href', cleanHref);
   }
@@ -30,17 +28,24 @@ document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', e => {
     const href = a.getAttribute('href');
 
-    // Handle smooth scroll if it's an in-page anchor (e.g. #section)
+    // Smooth scroll + remove # from URL
     if (href && href.startsWith('#')) {
       e.preventDefault();
-      const target = document.querySelector(href);
+
+      const targetId = href.slice(1);
+      const target = document.getElementById(targetId);
+
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
+
+        // Update the URL without reloading or using #
+        const currentUrl = window.location.href.split('#')[0];
+        history.replaceState(null, '', currentUrl + '/' + targetId); // or + '/' + targetId
       }
     }
-    // Otherwise allow normal navigation for other links
   });
 });
+
 
 
   // Replace index.html in the browser URL if present
